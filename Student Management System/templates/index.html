@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 Student Record Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+
+<body>
+    <div class="theme-toggle">
+        <button id="themeBtn">🌙</button>
+    </div>
+
+    <div class="container">
+        <h1>🎓 Student Record Management</h1>
+
+        <div class="buttons">
+            <button class="btn" onclick="showSection('home')">🏠 Home</button>
+            <button class="btn" onclick="showSection('add')">➕ Add Student</button>
+            <button class="btn" onclick="showSection('view')">📋 View Records</button>
+        </div>
+
+        <!-- HOME -->
+        <section id="home" class="section active">
+            <p>Welcome to the Student Record Management System.<br>Use the buttons above to add or view students.</p>
+        </section>
+
+        <!-- ADD -->
+        <section id="add" class="section">
+            <h2>📝 Add New Student</h2>
+            <form method="POST" class="student-form">
+                <fieldset>
+                    <legend>Basic Info</legend>
+                    <label>Name:</label>
+                    <input type="text" name="name" required placeholder="Enter name">
+                    <label>Roll Number:</label>
+                    <input type="number" name="roll_no" required placeholder="Enter roll number">
+                </fieldset>
+
+                <fieldset>
+                    <legend>Marks (0–100)</legend>
+                    <label>Hindi:</label><input type="number" name="hindi" min="0" max="100" required>
+                    <label>English:</label><input type="number" name="english" min="0" max="100" required>
+                    <label>Maths:</label><input type="number" name="maths" min="0" max="100" required>
+                    <label>Science:</label><input type="number" name="science" min="0" max="100" required>
+                    <label>Social Studies:</label><input type="number" name="social" min="0" max="100" required>
+                </fieldset>
+
+                <button type="submit" class="btn">Add Student</button>
+            </form>
+        </section>
+
+        <!-- VIEW -->
+        <section id="view" class="section">
+            <h2>📋 All Student Records</h2>
+
+            {% if records %}
+            <form method="POST" action="{{ url_for('clear_records') }}"
+                onsubmit="return confirm('Are you sure you want to clear all records?')">
+                <button type="submit" class="btn clear-btn">🗑️ Clear All</button>
+            </form>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Roll No</th>
+                            <th>Total</th>
+                            <th>%</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for r in records %}
+                        <tr>
+                            <td>{{ r.name }}</td>
+                            <td>{{ r.roll_no }}</td>
+                            <td>{{ r.total }}</td>
+                            <td>{{ r.percentage }}%</td>
+                            <td>{{ r.grade }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="no-record">No records yet 😔</p>
+            {% endif %}
+        </section>
+
+    </div>
+
+    <div id="toast" class="toast"></div>
+</body>
+
+</html>
