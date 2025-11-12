@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyMart Store 🛍️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>🛒 Welcome to PyMart Store</h1>
+        <p>Shop smart, shop easy!</p>
+        <button id="theme-toggle">🌙 Dark Mode</button>
+    </header>
+
+    <main id="store"></main>
+
+    <section id="cart-section">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <p id="total">Total: ₹0</p>
+        <button id="checkout">Generate Bill</button>
+    </section>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
