@@ -1,0 +1,11 @@
+======= Piyush Store Bill =======
+Chips x 2 = 40 Rs
+Coke x 1 = 40 Rs
+Bread x 1 = 30 Rs
+Biscuits x 1 = 20 Rs
+Chocolate x 1 = 10 Rs
+Eggs x 1 = 7 Rs
+-------------------------------
+Total Bill: 147 Rs
+Thank You for Shopping!
+===============================
